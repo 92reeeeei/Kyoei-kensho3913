@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Azureの関係性</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        .card {
+            background: #fff;
+            margin: 20px 0;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        h1, h2 {
+            color: #333;
+        }
+        p {
+            color: #555;
+        }
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-50%);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        .slide-in {
+            animation: slideIn 1s ease-out forwards;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Azureの管理グループ、リソースグループ、リソースの関係性</h1>
+
+    <div class="card slide-in">
+        <h2>管理グループ</h2>
+        <p>管理グループは、Azureサブスクリプションをまとめて管理するための階層構造を提供します。企業が複数のサブスクリプションを使用する場合、それらを論理的なグループにまとめることができます。</p>
+    </div>
+
+    <div class="card slide-in">
+        <h2>リソースグループ</h2>
+        <p>リソースグループは、Azureリソース（仮想マシン、ストレージアカウント、データベースなど）を論理的にグループ化するためのものです。リソースグループを使用すると、リソースのライフサイクルの管理が容易になります。</p>
+    </div>
+
+    <div class="card slide-in">
+        <h2>リソース</h2>
+        <p>リソースは、Azure上で提供される具体的なサービスやアイテムを指します。仮想マシン、SQLデータベース、ストレージアカウントなどがこれに該当します。</p>
+    </div>
+
+    <div class="card slide-in">
+        <h2>関係性の図</h2>
+        <pre style="background:#333;color:#fff;padding:10px;border-radius:8px;">
+管理グループ
+  └─ サブスクリプション
+        └─ リソースグループ
+              ├─ リソース (仮想マシン)
+              ├─ リソース (ストレージアカウント)
+              └─ リソース (データベース)
+        </pre>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const cards = document.querySelectorAll('.card');
+        cards.forEach(card => {
+            card.style.opacity = 0;
+            card.style.transform = 'translateX(-50%)';
+        });
+        let delay = 0;
+        cards.forEach(card => {
+            setTimeout(() => {
+                card.style.opacity = 1;
+                card.style.transform = 'translateX(0)';
+            }, delay);
+            delay += 500;
+        });
+    });
+</script>
+
+</body>
